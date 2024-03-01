@@ -1,0 +1,14 @@
+<section class="flex flex-col justify-center items-center h-full w-full p-5">
+    <h2>Tu Historial de Compras</h2>
+    <p>En esta página podrás tu historial de compra de Pokemóns</p>
+    <div class="flex justify-center items-center h-full">
+        <app-orders-history
+            [dataSource]="ordersList"
+            *ngIf="!isLoading; else spinnerTemplate"
+        ></app-orders-history>
+    </div>
+    
+    <ng-template #spinnerTemplate>
+        <mat-spinner></mat-spinner>
+    </ng-template>
+</section>

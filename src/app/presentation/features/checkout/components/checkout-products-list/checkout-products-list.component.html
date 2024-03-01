@@ -1,0 +1,40 @@
+<ng-container *ngIf="productsList.length > 0; else emptyViewTemplate">
+    <div class="flex flex-col" *ngIf="!showSuccessMessage && !isLoading">
+        <section class="flex flex-row md:flex-row flex-wrap justify-center gap-5 my-5">
+            <app-checkout-product-card
+                *ngFor="let item of productsList"
+                [productItem]="item"
+            ></app-checkout-product-card>   
+        </section>
+        <mat-divider></mat-divider>
+        <section class="flex flex-col p-5">
+            <h2>Total</h2>
+            <span>
+                <sup>$us</sup>
+                <span class="text-lg">{{ total | number }}</span>
+            </span>
+        </section>
+        <mat-divider></mat-divider>
+        <section class="inline-block p-5">
+            <button mat-raised-button color="primary" (click)="onConfirmCheckoutClick()">Confirmar Pago</button>
+        </section>        
+    </div>  
+    
+    <ng-container *ngIf="showSuccessMessage">
+        <div class="text-center">
+            <p>Tu pedido fue realizada correctamente</p>
+            <button mat-raised-button color="primary" routerLink="/home">Volver a Comprar</button>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+    </ng-container>
+</ng-container>
+
+<ng-template #emptyViewTemplate>
+    <div class="text-center">
+        <p>Por el momento no tienes ningún Pokemón en el Carrito de Compras</p>
+        <button mat-raised-button color="primary" routerLink="/home">Volver al Inicio</button>
+    </div>    
+</ng-template>

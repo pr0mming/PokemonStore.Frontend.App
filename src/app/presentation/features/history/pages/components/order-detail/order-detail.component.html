@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Detalle de Orden</h1>
+<div mat-dialog-content>
+  <section class="grid grid-cols-1 md:grid-cols-2">
+    <section class="flex flex-col gap-y-5">
+        <div class="flex flex-col">
+            <span class="font-bold">Orden ID</span>
+            <span>{{ data.id }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-bold">Nombre</span>
+            <span>{{ data.product.name }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-bold">Descripción</span>
+            <span>{{ data.product.description }}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-bold">Precio (Unidad)</span>
+            <span>
+                <sup>$us</sup>
+                <span class="text-lg">{{ data.product.price | number }}</span>
+            </span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-bold">Cantidad</span>
+            <span>{{ data.ammount }}</span>
+        </div>        
+    </section>
+    <section class="flex justify-center p-2">
+        <img 
+            class="w-auto"
+            mat-card-image 
+            [src]="data.product.imageURL" 
+            [alt]="data.product.name"
+        >
+    </section>
+  </section>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</div>

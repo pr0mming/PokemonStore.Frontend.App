@@ -1,0 +1,27 @@
+<ng-container *ngIf="productFileTempURL; else fileControlTemplate">
+    <div class="flex flex-col gap-y-2">
+        <div class="rounded-xl border-solid border-2 border-primary-100 p-2">
+            <img 
+                class="w-full max-w-[250px] m-auto"
+                mat-card-image 
+                [src]="productFileTempURL | safeResourceUrl" 
+                alt="File to Upload"
+            >
+        </div>
+        
+        <div class="inline-block text-center">
+            <button mat-mini-fab color="primary" type="button" aria-label="Reset Pokemon File" (click)="onResetPokemonFile()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #fileControlTemplate>
+    <input #fileControl class="hidden" type="file" accept="image/*" (change)="onFileChange($event)">
+    <div class="flex flex-col justify-center items-center w-full h-[250px] rounded-xl border-dashed border-2 border-primary-100 cursor-pointer" (click)="fileControl.click()">
+        <mat-icon class="scale-150">image</mat-icon>
+        <br>
+        <p>Haz click aquí!</p>
+    </div>
+</ng-template> 

@@ -1,0 +1,26 @@
+<section class="flex flex-row items-center gap-5 h-30 p-5 bg-primary-500 shadow-xl">
+    <div class="block md:hidden">
+        <mat-icon 
+            class="cursor-pointer text-white mt-1"
+            aria-hidden="false" 
+            aria-label="Menu Icon" 
+            fontIcon="menu"
+            (click)="onShowSidebarClick()"
+        ></mat-icon>
+    </div>
+    <div>
+        <img 
+            src="assets/logos/pokemon-logo-01.png" 
+            alt="Pokemon Logo"
+            width="100"
+            height="30"
+        >
+    </div>
+    <div class="hidden md:flex flex-row gap-5">
+        <a 
+            class="font-medium text-white tracking-widest uppercase"
+            [routerLink]="item.routerLink"
+            *ngFor="let item of menu"
+        >{{ item.text }}</a>
+    </div>
+</section>

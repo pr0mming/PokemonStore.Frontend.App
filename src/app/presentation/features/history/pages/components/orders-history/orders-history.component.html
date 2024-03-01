@@ -1,0 +1,44 @@
+<ng-container *ngIf="dataSource.length > 0; else emptyViewTemplate">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Item ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+        </ng-container>        
+      
+        <ng-container matColumnDef="ammount">
+          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+          <td mat-cell *matCellDef="let element"> {{element.ammount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Precio (Unidad) </th>
+            <td mat-cell *matCellDef="let element"> $US {{element.product.price | number}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell  *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row" >
+                <button mat-icon-button aria-label="Details Icon" (click)="onOpenOrderDetailDialogClick(row)">
+                    <mat-icon>search</mat-icon>
+                </button>        
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </table>
+</ng-container>
+  
+<ng-template #emptyViewTemplate>
+    <div class="text-center">
+        <p>Por el momento no tienes ningún historial para visualizar</p>
+        <button mat-raised-button color="primary" routerLink="/home">Volver al Inicio</button>
+    </div>    
+</ng-template>

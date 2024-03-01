@@ -1,0 +1,11 @@
+<section class="content-center" *ngIf="productsList.length > 0; else emptyViewTemplate">
+    <app-product-card
+        *ngFor="let product of productsList"
+        [productItem]="product"
+        class="inline-block m-2"
+    ></app-product-card>
+</section>
+
+<ng-template #emptyViewTemplate>
+    <p>Por el momento no existen elementos para visualizar</p>
+</ng-template>

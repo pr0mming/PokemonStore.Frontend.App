@@ -1,0 +1,30 @@
+<mat-card class="product-card shadow-2xl" *ngIf="productItem">
+    <mat-card-header class="flex justify-center items-center">
+      <mat-card-title>{{ productItem.name }}</mat-card-title>
+    </mat-card-header>
+    <div class="p-5">
+        <img mat-card-image [src]="productItem.imageURL" [alt]="productItem.name">
+    </div>    
+    <mat-card-content>
+      <p>
+        {{ productItem.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="flex flex-row justify-center items-center gap-5 m-2">          
+          <div>
+            <sup>us$</sup>
+            <span class="text-lg">{{ productItem.price | number }}</span>
+          </div>
+          <button 
+            mat-button 
+            mat-raised-button
+            color="primary"
+            (click)="onAddProductToShoppingCartClick()"
+          >
+            Agregar
+          </button>
+        </div>
+    </mat-card-actions>
+</mat-card>
+  

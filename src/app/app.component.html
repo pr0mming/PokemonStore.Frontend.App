@@ -1,0 +1,12 @@
+<section class="flex flex-col w-full min-h-full">
+    <app-home-header></app-home-header>
+    <main class="flex flex-row grow bg-primary-50">
+        <app-home-sidebar class="absolute z-10 h-full w-full md:hidden" *ngIf="showSidebarObs$ | async"></app-home-sidebar>
+        <div class="w-full" *ngIf="(showSidebarObs$ | async) === false">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+    <app-home-footer></app-home-footer>
+
+    <app-shopping-cart></app-shopping-cart>
+</section>

@@ -1,0 +1,99 @@
+<h1 mat-dialog-title>Crear de Pokemón</h1>
+<div mat-dialog-content>
+    <form id="productForm" [formGroup]="createProductForm" autocomplete="off" (ngSubmit)="onSubmitCreateProductFormClick()">
+        <section class="grid grid-cols-1 md:grid-cols-2">
+            <section class="flex flex-col items-center gap-y-5">       
+                <div class="w-full">
+                    <mat-form-field class="w-full">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre" formControlName="name">
+                    </mat-form-field>
+                    <div *ngIf="getFormControlByName('name')?.invalid && (getFormControlByName('name')?.dirty || getFormControlByName('name')?.touched)"
+                        class="text-red-500">
+
+                        <p *ngIf="getFormControlByName('name')?.errors?.['required']">
+                            Este campo es requerido
+                        </p>
+                        <p *ngIf="getFormControlByName('name')?.errors?.['minlength']">
+                            Este campo requiere al menos <strong>{{ getFormControlByName('name')?.errors?.['minlength']?.requiredLength }}</strong> caracteres
+                        </p>
+                        <p *ngIf="getFormControlByName('name')?.errors?.['maxlength']">
+                            Este campo solo admite hasta <strong>{{ getFormControlByName('name')?.errors?.['maxlength']?.requiredLength }}</strong> caracteres
+                        </p>
+
+                    </div>
+                </div>
+                <div class="w-full">
+                    <mat-form-field class="w-full">
+                        <mat-label>Descripción</mat-label>
+                        <textarea matInput placeholder="Descripción" rows="5" formControlName="description"></textarea>
+                    </mat-form-field>
+                    <div *ngIf="getFormControlByName('description')?.invalid && (getFormControlByName('description')?.dirty || getFormControlByName('description')?.touched)"
+                        class="text-red-500">
+
+                        <p *ngIf="getFormControlByName('description')?.errors?.['required']">
+                            Este campo es requerido
+                        </p>
+                        <p *ngIf="getFormControlByName('description')?.errors?.['minlength']">
+                            Este campo requiere al menos <strong>{{ getFormControlByName('description')?.errors?.['minlength']?.requiredLength }}</strong> caracteres
+                        </p>
+                        <p *ngIf="getFormControlByName('description')?.errors?.['maxlength']">
+                            Este campo solo admite hasta <strong>{{ getFormControlByName('description')?.errors?.['maxlength']?.requiredLength }}</strong> caracteres
+                        </p>
+
+                    </div>
+                </div>
+                <div class="w-full">
+                    <mat-form-field class="w-full">
+                        <mat-label>Precio</mat-label>
+                        <input matInput placeholder="Precio" formControlName="price">
+                    </mat-form-field>
+                    <div *ngIf="getFormControlByName('price')?.invalid && (getFormControlByName('price')?.dirty || getFormControlByName('price')?.touched)"
+                        class="text-red-500">
+
+                        <p *ngIf="getFormControlByName('price')?.errors?.['required']">
+                            Este campo es requerido
+                        </p>
+                        <p *ngIf="getFormControlByName('price')?.errors?.['min']">
+                            Este campo requiere <strong>{{ getFormControlByName('price')?.errors?.['min']?.min | number }}</strong> como valor mínimo
+                        </p>
+                        <p *ngIf="getFormControlByName('price')?.errors?.['max']">
+                            Este campo admite <strong>{{ getFormControlByName('price')?.errors?.['max']?.max | number }}</strong> como valor máximo
+                        </p>
+                        <p *ngIf="getFormControlByName('price')?.errors?.['pattern']">
+                            Este campo solo admine números enteros positivos
+                        </p>
+
+                    </div>
+                </div>
+            </section>
+            <section class="flex justify-center items-center px-5">
+                <app-file-product-item
+                    class="w-full"
+                    (productFileChange)="productFile = $event"
+                ></app-file-product-item>
+            </section>
+        </section>
+
+        <button 
+            
+            mat-raised-button 
+            color="primary" 
+            type="submit" 
+            [disabled]="!isValidForm()"
+            (click)="onSubmitCreateProductFormClick()"
+        >
+            Confirmar
+        </button>
+    </form>
+
+    <ng-container *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+    </ng-container>
+
+    <ng-container *ngIf="showSuccessMessage">
+        <div class="text-center">
+            <p class="font-bold">Tu producto fue actualizado correctamente</p>
+        </div>
+    </ng-container>
+</div>

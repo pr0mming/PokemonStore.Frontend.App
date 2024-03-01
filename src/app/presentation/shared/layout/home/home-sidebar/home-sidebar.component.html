@@ -1,0 +1,8 @@
+<aside class="flex flex-col gap-5 bg-primary-200 h-full p-5">
+    <a 
+        class="font-medium text-white tracking-widest uppercase"
+        (click)="onMenuClick()"
+        [routerLink]="item.routerLink"
+        *ngFor="let item of menu"
+    >{{ item.text }}</a>
+</aside>
