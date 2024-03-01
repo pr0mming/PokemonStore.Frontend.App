@@ -2,7 +2,7 @@
 
 The Pokemon Store is a super little **Web App** to perform actions (like an **e-commerce**) with items of the Pokédex, the main porpuse of this project is implement the **Clean Architecture** approach in **Angular**
 
-![image](https://github.com/pr0mming/PokemonStore.Frontend.App/assets/20020612/65636da1-0aa4-4d3b-8dcb-48856c33032b)
+![image](https://github.com/pr0mming/PokemonStore.Frontend.App/assets/20020612/332399bd-f3c7-4c12-a49d-c46c7827da48)
 
 ## How to run it locally :rocket:
 
